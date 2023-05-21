@@ -1,0 +1,44 @@
+﻿@using Newtonsoft.Json;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using UmbracoBoutique.Services.DTO;
+
+@{
+	Layout = "Layout.cshtml";
+}
+
+@{
+	var result = JsonConvert.DeserializeObject<SearchResultModel>($"{TempData["SearchResultModel"]?.ToString() ?? ""}");
+	var items = JsonConvert.DeserializeObject<List<QueryResultModel>>($"{result?.Items ?? default}");
+
+	int i = 0;
+}
+
+<div class="pt-5"></div>
+<div class="pt-5"></div>
+
+<section class="search_page_container">
+	<div class="container-fluid">
+		<h1>Search</h1>
+		@if(items?.Any() == true)
+		{
+			<div class="searchpage_item_list product_item_list">
+				@foreach (var item in items)
+				{
+					<div class="row">
+						<a href="@item.Url" class="col-12 product_item_link">
+							<div class="row">
+								<img class="product_item_img" src="@item.Image" >
+							</div>
+							<div class="row">
+								<div class="py-3">@item.Name</div>
+								<div class="">FROM $ @item.Price</div>
+							</div>
+						</a>
+					</div>
+				}
+			</div>
+		}
+	</div>
+</section>

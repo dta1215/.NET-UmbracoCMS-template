@@ -1,0 +1,192 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using UmbracoBoutique.Services;
+@using UmbracoBoutique.Services.Interfaces;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject IServiceProvider _serviceProvider;
+@{
+    Layout = null;
+
+    var headerDocument = Umbraco.Content(UmbracoBoutique.Constants.DocumentContent.Key.Header) as ThanhTieuDe;
+
+    var headerLogoSrc = headerDocument?.ThanhTieuDe_anhLogo?.Url()
+                                ?? "/assets/images/small/Esthetique.png";
+    
+    var headerLinks = headerDocument?.ThanhTieuDe_danhSachMenu;
+
+    var cartService = _serviceProvider.GetService(typeof(ICartService)) as ICartService;
+    int cartCount = cartService.Carts()?.Count() ?? default;
+
+    var lang = Model?.Root()?.GetCultureFromDomains();
+}
+
+@{
+    var userAgent = Context.Request.Headers["User-Agent"].ToString();
+    var isMobile = userAgent.Contains("Mobi") || userAgent.Contains("Android") || userAgent.Contains("iOS");
+}
+
+@*Progress request*@
+<div id="progress_container" class=""></div>
+
+    <header class="header_container @(Model is TrangChu ? "" : "hover")">
+        <div class="header_main container-fluid">
+            <div class="header_middle row pt-1">
+                <div class="col-2">
+                    <select id="select_language" asp-for="@lang">
+                        <option value="en-US" currentURL="@Model?.Url(culture: "en-US")">English</option>
+                        <option value="zh-Hans" currentURL="@Model?.Url(culture: "zh-Hans")">中国话</option>
+                    </select>
+                </div>
+                <div class="col-8">
+                    <a href="@headerDocument?.ThanhTieuDe_lienKetAnhLogo?.Url" class="header_logo_container">
+                        <img class="header_logo_img" src="@headerLogoSrc" alt="header logo" />
+                    </a>
+                </div>
+                <div class="col-2">
+                    <ul class="d-flex justify-content-center">
+                        <li class="header_link px-2">
+                            <a id="btnSearch" href="#">@Umbraco.GetDictionaryValue("Search")</a>
+                        </li>
+                        <li class="header_link px-2">
+                            <a id="btnCart" href="#">@Umbraco.GetDictionaryValue("Cart") <span id="CartCount">(@cartCount)</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <ul class="header_links d-flex justify-content-center">
+                    @if (headerLinks?.Any() == true)
+                    {
+                        @foreach (Menu menu in headerLinks)
+                        {
+                            if (menu == null)
+                            {
+                                continue;
+                            }
+
+                            var subMenus = menu.Children<Menu>();
+                            (string title, string url, string isActive) = GetMenuValues(menu);
+
+                            <li class="header_link hasSubMenu @isActive">
+                                <a href="@url">@title</a>
+                                @if (subMenus?.Any() == true)
+                                {
+                                    <ul class="header_links_subMenu" style="display: none;">
+                                        @foreach (Menu subMenu in subMenus)
+                                        {
+                                            (string subMenuTitle, string subMenuUrl, string subMenuIsActive) = GetMenuValues(subMenu);
+
+                                            <li class="header_link my-2 mx-2 @subMenuIsActive">
+                                                <a href="@subMenuUrl">@subMenuTitle</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="header_search_area container-fluid" style="display:none;">
+            <div class="row header_controls py-4">
+                <div class="col-11 search_control pl-2">
+                    <i id="magnifyIcon" class="fa-solid fa-magnifying-glass btnSearchAction"></i>
+                    <input id="searchInput" name="searchValue" class="form-control" placeholder="@Umbraco.GetDictionaryValue("search")..." />
+                </div>
+                <div class="col-1 d-flex justify-content-end">
+                    <i id="btnCloseSearch" style="cursor:pointer" class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+   <div class="header_mobile container-fluid" style="display: none">
+    <div class="row">
+        <div class="col-2 col-xs-3 col-sm-3 ">
+            <nav id="mobile_nav">
+                <ul class="first-nav">
+                    <li>
+                        <select id="select_language_mobile" asp-for="@lang">
+                            <option value="en-US" currentURL="@Model?.Url(culture: "en-US")">English</option>
+                            <option value="zh-Hans" currentURL="@Model?.Url(culture: "zh-Hans")">中国话</option>
+                        </select>
+                        <hr />
+                    </li>
+                    <li>
+                        <div class="row">
+                            <div class="col-xs-12 search_control pl-2">
+                                <i id="magnifyIcon" class="fa-solid fa-magnifying-glass btnSearchAction"></i>
+                                <input id="searchInput" name="searchValue" class="form-control" placeholder="@Umbraco.GetDictionaryValue("search")..." />
+                            </div>
+                        </div>
+                        <hr />
+                    </li>
+                    @if (headerLinks?.Any() == true)
+                    {
+                        @foreach (Menu menu in headerLinks)
+                        {
+                            if (menu == null)
+                            {
+                                continue;
+                            }
+
+                            var subMenus = menu.Children<Menu>();
+                            (string title, string url, string isActive) = GetMenuValues(menu);
+
+                            <li class="@isActive">
+                                <a href="@url">@title</a>
+                                @if (subMenus?.Any() == true)
+                                {
+                                    <ul class="">
+                                        @foreach (Menu subMenu in subMenus)
+                                        {
+                                            (string subTitle, string subUrl, string subIsActive) = GetMenuValues(subMenu);
+                                            <li class="@subIsActive">
+                                                <a href="@subUrl">@subTitle</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    }
+                </ul>
+            </nav>
+        </div>
+        <div class="col-8 col-xs-7 col-sm-7 d-flex py-3">
+            <a href="@headerDocument?.ThanhTieuDe_lienKetAnhLogo?.Url" class="header_logo_container">
+                <img class="header_logo_img" src="@headerLogoSrc" alt="header logo" />
+            </a>
+        </div>
+        <div class="col-2 col-xs-2 col-sm-2 py-2">
+            <a id="btnCart" href="#">@Umbraco.GetDictionaryValue("Cart") <span id="CartCount">(@cartCount)</span></a>
+        </div>
+    </div>
+</div>
+
+@functions{
+    public (string ,string, string) GetMenuValues(Menu menu)
+    {
+        var selectedMenu = menu.Menu_SelectedNode?.FirstOrDefault();
+        var menuTitle = "";
+        var menuUrl = "";
+        @*Chi  danh cho case la Menu_category*@
+        var isActiveMenu = "";
+
+        if (selectedMenu is Menu_Category menu_category)
+        {
+            menuTitle = menu_category?.Menu_Category_node?.Name;
+            menuUrl = menu_category?.Menu_Category_node?.Url();
+            isActiveMenu = menu_category?.Menu_Category_node?.Id == Model?.Id ? "is_active" : "";
+        }
+        else if (selectedMenu is Menu_OtherLink menu_otherLink)
+        {
+            menuTitle = menu_otherLink?.Menu_OtherLink_node?.Name;
+            menuUrl = menu_otherLink?.Menu_OtherLink_node?.Url;
+        }
+
+        return (menuTitle, menuUrl, isActiveMenu);
+    }
+}
+
+

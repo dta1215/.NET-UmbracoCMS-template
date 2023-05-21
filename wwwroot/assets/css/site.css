@@ -1,0 +1,196 @@
+﻿@import url(/assets/css/FontFaces.css);
+
+:root {
+    --btnColor: #0cf;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+html * {
+    font-size: 12px;
+    font-family: "Baskervville";
+    letter-spacing: 2.4px;
+    line-height: 19px;
+    color: #363636;
+}
+
+.main_body {
+    /*padding-top: 8em;*/
+}
+
+ul, li {
+    list-style: none;
+}
+
+ul, ol {
+    /*padding: 0 !important;*/
+}
+
+a {
+    text-decoration: none !important;
+    color: unset !important;
+    transition: all .3s;
+}
+
+a:hover {
+    text-decoration: underline !important;
+}
+
+.product_item_img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.productCard {
+    max-width: 300px;
+    width: 100%;
+}
+
+/*day la phan global css dung chung*/
+
+
+/*Intersection observer*/
+
+
+/*#region Lazy loading*/
+.loadin {
+    opacity: 0;
+    transform: translateY(45px);
+    transition: transform 0.6s, opacity 0.9s;
+    animation: fadeIn ease 5s forwards;
+    -webkit-animation: fadeIn ease 5s forwards;
+    -moz-animation: fadeIn ease 5s forwards;
+    -o-animation: fadeIn ease 5s forwards;
+    -ms-animation: fadeIn ease 5s forwards;
+}
+
+.loaded {
+    opacity: 1;
+    transition-delay: 0s;
+    animation: slideUp .8s ease forwards;
+}
+
+.fadeInImage {
+    opacity: 1;
+    transition: all .8s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.fadeOutImage {
+    opacity: 0;
+    transition: all .3s;
+}
+
+/*#endregion*/
+
+.isLoading {
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+    /*padding: 0 !important;*/
+}
+
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}
+
+
+
+.btn {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border: solid #0000003b 1px;
+    /*border-radius: 2px;*/
+    transition: all .3s;
+}
+
+.btn:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #4c4c4c;
+    /*border-radius: 10rem;*/
+    z-index: -2;
+    transition: all .3s ease;
+}
+
+.btn:hover {
+    color: white !important;
+}
+.btn:hover::after {
+    color: white;
+    width: 100%;
+    background-color: #4c4c4c;
+}
+.btn:active, .btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+a.btn{
+    text-decoration: none !important;
+    border-radius: 0px;
+    font-size: 1em;
+}
+.productCard a {
+    text-decoration: none !important;
+}
+.Widget_HienThiSanPhamTheoDanhMuc .product_item_link {
+    text-decoration: none !important;
+}
+
+
+.paginationjs .paginationjs-pages li {
+    border: none !important;
+}
+
+.paginationjs .paginationjs-pages li.active > a {
+    background: unset !important; 
+    border-bottom: solid black 1px;
+}
+
+
+.header_link a {
+    /*font-weight: bolder;*/
+}
+.header_link a:hover{
+    text-decoration:none !important;
+}
+select, option {
+    color: #706f6f !important;
+    font-size: 1.1em !important;
+}
+
+.form-control:focus, .form-control:active {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+
+form .error {
+    color: red;
+}
+
+.marginTop{
+    margin-top: 83px;
+}

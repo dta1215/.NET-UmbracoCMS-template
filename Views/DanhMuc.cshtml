@@ -1,0 +1,31 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using UmbracoBoutique.Services;
+@using UmbracoBoutique.Services.DTO;
+
+@*@addTagHelper *, WebApplication*@
+@{
+    Layout = "Layout.cshtml";
+
+    var danhMucDocument = Model as DanhMuc;
+    var danhSachNoiDungDauTrang = danhMucDocument?.DanhMuc_noiDungDauTrang;
+    var danhSachNoiDungChinh = danhMucDocument?.DanhMuc_noiDungChinhGiua;
+}
+
+@if(danhSachNoiDungDauTrang?.Any() == true)
+{
+    <div class="widget_top">
+        @Html.Partial("/Views/Partials/widget/_AddWidgetMethod.cshtml", new WidgetMethodModel { Document = Model, DanhSachWidgets = danhSachNoiDungDauTrang})
+    </div>
+}
+
+
+@if (danhSachNoiDungChinh?.Any() == true)
+{
+    <div class="widget_main">
+        @Html.Partial("/Views/Partials/widget/_AddWidgetMethod.cshtml", new WidgetMethodModel { Document = Model, DanhSachWidgets = danhSachNoiDungChinh})
+    </div>
+}
+

@@ -1,0 +1,104 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using UmbracoBoutique.Services.DTO;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using UmbracoBoutique.Services.Interfaces;
+@inject IServiceProvider _serviceProvider;
+
+@{
+    //Layout = "Layout.cshtml";
+    Layout = null;
+}
+
+@Html.Partial("/Views/Shared/_StyleSheets.cshtml")
+
+
+@{
+    var _cartService = _serviceProvider.GetService(typeof(ICartService)) as ICartService;
+    var cartItems = _cartService.Carts()?.ToList();
+
+    var homeDoc = Umbraco.Content(Constants.DocumentContent.Key.Home) as TrangChu;
+    var lang = homeDoc?.GetCultureFromDomains();
+}
+
+@if(cartItems?.Any() == false)
+{
+    <div class="py-5">
+        <div class="d-flex justify-content-center py-4">
+            <i class="fa-solid fa-cart-shopping display-1"></i>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div>
+                <h1>Cart is empty</h1>
+            </div>
+        </div> 
+        <div class="d-flex justify-content-center">
+            <a href="@Context.Request.Headers["Referer"].ToString()">
+                <div class="display-7">Back</div>
+            </a>
+        </div>
+    </div>
+}
+
+@if(cartItems?.Any() == true)
+{
+    <section class="checkout_container container-fluid" lang="@lang">
+        <div class="row cart_main">
+            <div class="col-sm-12 col-lg-7 cart_left_area">
+                <form id="checkoutForm" class="container px-5 py-5">
+                    <div class="form-group">
+                        <label class="form-label">Full name</label>
+                        <input class="form-control" name="fullname" id="fullname" />
+                    </div>
+                    <div class="form-group py-2">
+                        <label class="form-label">Address</label>
+                        <input class="form-control" name="address" id="address" />
+                    </div>
+                    <div class="form-group py-2">
+                        <label class="form-label">Mobile number</label>
+                        <input class="form-control" name="mobilenumber" id="mobilenumber" />
+                    </div>
+                    <div class="form-group d-flex justify-content-end py-3">
+                        <button id="btnCheckOut" type="button" class="btn btn-sm btn-outline-dark">CHECK OUT</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-12 col-lg-5 cart_right_area">
+                @if (cartItems?.Any() == true)
+                {
+                    <div class="cart_list py-5">
+                        @foreach (var item in cartItems)
+                        {
+                            <div class="row cart_item mb-4 d-flex align-items-center">
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 cart_image_container">
+                                    <img class="cart_img" width="50%" src="@item.ImageSrc">
+                                    <span class="cart_quantity">@item.Quantity</span>
+                                </div>
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                    <div class="row"><label class="checkout_cart_title">@item.ProductName</label></div>
+                                    <div class="row"><label>@item.SizeValue - @item.ColorValue</label></div>
+                                </div>
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <div class="row"><label>$@item.Price</label></div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="checkout_total_area">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"><h3 class="checkout_total_title">TOTAL</h3></div>
+                            @{
+                                var total = cartItems.Sum(x => (x.Price * x.Quantity));
+                            }
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">USD <label class="checkout_total_value">$@total</label></div>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+
+@Html.Partial("/Views/Shared/_Scripts.cshtml")

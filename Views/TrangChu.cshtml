@@ -1,0 +1,18 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using UmbracoBoutique.Services.DTO;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "Layout.cshtml";
+}
+
+@{
+	var homeDocument = Umbraco.Content(Constants.DocumentContent.Key.Home) as TrangChu;
+
+	var widgets = homeDocument?.TrangChu_thanhPhanChinh;
+}
+
+
+
+@if (widgets?.Any() == true){
+	@Html.Partial("/Views/Partials/widget/_AddWidgetMethod.cshtml", new WidgetMethodModel { Document = homeDocument, DanhSachWidgets = widgets })
+}

@@ -1,0 +1,39 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Demo Umbraco CMS</title>
+    <meta name="description" content="Demo Umbraco CMS for landing page">
+    <meta name="keywords" content="Umbraco, CMS, Landing Page, SEO">
+    <meta name="author" content="theanh99huha@gmail.com">
+    <link rel="icon" href="/assets/icons/cms_favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Html.Partial("/Views/Shared/_StyleSheets.cshtml")
+</head>
+<body>
+    @Html.Partial("/Views/Shared/PartialViews/_Header.cshtml")
+    @Html.Partial("/Views/Shared/PartialViews/_MarginTop.cshtml")
+
+    <div class="main_body">
+        @RenderBody()
+    </div>
+    <hr />
+    @Html.Partial("/Views/Shared/PartialViews/_Footer.cshtml")
+
+    @*Cart*@
+    @Html.Partial("/Views/Shared/PartialViews/_CartModal.cshtml")
+
+
+    @*Scripts*@
+    @Html.Partial("/Views/Shared/_Scripts.cshtml")
+
+    @RenderSection("scripts", false)
+</body>
+</html>

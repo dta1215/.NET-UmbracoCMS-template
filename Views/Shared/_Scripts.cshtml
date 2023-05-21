@@ -1,0 +1,66 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    var rootDoc = Umbraco.Content(Constants.DocumentContent.Key.Home);
+    var lang = rootDoc?.GetCultureFromDomains();
+}
+
+@*jquery*@
+<script asp-append-version="true" src="/assets/libs/jquery/jquery.min.js"></script>
+@*Bootstrap*@
+<script asp-append-version="true" src="/assets/libs/bootstrap/js/bootstrap.min.js"></script>
+
+@*Validation*@
+<script asp-append-version="true" src="/assets/libs/jquery-validation/jquery.validate.min.js"></script>
+<script asp-append-version="true" src="/assets/libs/jquery-validation/additional-methods.min.js"></script>
+@if(lang == "zh-Hans")
+{
+    <script asp-append-version="true" src="/assets/libs/jquery-validation/localization/messages_zh.min.js"></script>
+}
+@*<script src="/assets/libs/jquery-validation/jquery.validate.unobtrusive.min.js"></script>*@
+
+@*Mobile Menu*@
+<script asp-append-version="true" src="/assets/libs/Multi-Level-Sidebar-Menu-HC-MobileNav/dist/hc-offcanvas-nav.js"></script>
+
+@*Date picker*@
+<script asp-append-version="true" src="/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+@*Font awesome*@
+@*<script asp-append-version="true" src="/assets/libs/fontawesome-free-6.2.1-web/js/all.min.js"></script>
+<script asp-append-version="true" src="/assets/libs/fontawesome-free-6.2.1-web/js/brands.min.js"></script>
+<script asp-append-version="true" src="/assets/libs/fontawesome-free-6.2.1-web/js/solid.min.js"></script>
+*@
+
+@*Sticky sidebar*@
+<script asp-append-version="true" src="/assets/libs/minimal-sticky-sidebar/stickySidebar.js"></script>
+<script asp-append-version="true" src="/assets/libs/fix-sidebar-bottom-sticksy/dist/sticksy.min.js"></script>
+
+@*Pagination*@
+<script asp-append-version="true" src="/assets/libs/pagination.min.js"></script>
+
+@*Multiple select*@
+<script asp-append-version="true" src="/assets/libs/fastselect-master/dist/fastselect.min.js"></script>
+<script asp-append-version="true" src="/assets/libs/fastselect-master/dist/fastselect.standalone.min.js"></script>
+
+@*Slick slider*@
+<script asp-append-version="true" src="/assets/libs/slick/slick.js"></script>
+
+@*Image zoom*@
+<script asp-append-version="true" src="/assets/libs/image zoom/jquery.zoom.js"></script>
+@*<script asp-append-version="true" src="/assets/libs/image zoom/jquery.zoom.min.js"></script>*@
+
+@*Drawer*@
+<script asp-append-version="true" src="/assets/libs/slide-drawer-panel/dist/js/slide-out-panel.js"></script>
+
+@*Light box*@
+<script asp-append-version="true" src="/assets/libs/SmartPhoto-master/js/jquery-smartphoto.min.js"></script>
+
+@*Layout js dung chung*@
+@*<script asp-append-version="true" src="~/assets/js/layout.js"></script>
+<script asp-append-version="true" src="/assets/js/header.js"></script>
+<script asp-append-version="true" src="/assets/js/sanphamtheodanhmuc.js"></script>
+<script asp-append-version="true" src="/assets/js/chitietsanpham.js"></script>
+<script asp-append-version="true" src="/assets/js/cart_modal.js"></script>
+<script asp-append-version="true" src="/assets/js/checkout_validation.js"></script>*@
+
+<script asp-append-version="true" src="/assets/js/site.min.js"></script>

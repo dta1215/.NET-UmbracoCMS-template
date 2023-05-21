@@ -1,0 +1,23 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/assets/css/site.min.css",
+    "inputFiles": [
+      "wwwroot/assets/css/site.css",
+      "wwwroot/assets/css/TrangChu.css",
+      "wwwroot/assets/css/Header.css",
+      "wwwroot/assets/css/Widgets.css",
+      "wwwroot/assets/css/responsive/responsive.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/layout.js",
+      "wwwroot/assets/js/header.js",
+      "wwwroot/assets/js/sanphamtheodanhmuc.js",
+      "wwwroot/assets/js/chitietsanpham.js",
+      "wwwroot/assets/js/cart_modal.js",
+      "wwwroot/assets/js/checkout_validation.js"
+    ]
+  }
+]

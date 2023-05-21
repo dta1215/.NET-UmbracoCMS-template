@@ -1,0 +1,312 @@
+﻿@*@using Umbraco.Cms.Core.Models.Blocks;
+@using Umbraco.Cms.Web.Common.PublishedModels;*@
+@*@model WidgetMethodModel*@
+@using UmbracoBoutique.Services.DTO
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<WidgetMethodModel>
+
+@*Tong hop tat ca cac ham render widget*@
+@{
+    InitRenderModels();
+}
+
+@*Render danh sach widgets*@
+
+@foreach (var widget in Model.DanhSachWidgets)
+{
+    var getMethod = mappModels.FirstOrDefault(x => x.AliasName == widget.Content.ContentType.Alias);
+    getMethod?.Render(Model.Document, widget.Content);
+}
+
+
+@functions {
+    public class MappModel
+    {
+        public string AliasName { get; set; }
+        public Action<IPublishedContent, IPublishedElement> Action { get; set; }
+
+        public void Render(IPublishedContent document, IPublishedElement widget)
+        {
+            Action.Invoke(document, widget);
+        }
+    }
+
+    public List<MappModel> mappModels = new List<MappModel>();
+
+    //Khi phát sinh thêm widget mới chỉ cần thêm widgetrender model vào đây
+    //Và thêm mới hàm render widget
+    public void InitRenderModels()
+    {
+        mappModels.Add(new MappModel { AliasName = Widget_FreeText.ModelTypeAlias, Action = FreeText_Render });
+        mappModels.Add(new MappModel { AliasName = Widget_Banner.ModelTypeAlias, Action = HomeBanner_Render });
+        mappModels.Add(new MappModel { AliasName = Widget_BannerDanhMuc.ModelTypeAlias, Action = Banner_Render });
+        mappModels.Add(new MappModel { AliasName = Widget_HienThiSanPhamTheoDanhMuc.ModelTypeAlias, Action = SanPhamTheoDanhMuc_Render });
+        mappModels.Add(new MappModel { AliasName = Widget_ChiTietSanPham.ModelTypeAlias, Action = ChiTietSanPham_Render });
+        mappModels.Add(new MappModel { AliasName = Widget_SanPhamLienQuan.ModelTypeAlias, Action = SanPhamLienQuan_Render });
+        mappModels.Add(new MappModel { AliasName = Widget_SanPhamDaXem.ModelTypeAlias, Action = SanPhamDaXem_Render });
+        mappModels.Add(new MappModel { AliasName = Widget_Grid.ModelTypeAlias, Action = Grid_Render });
+        mappModels.Add(new MappModel { AliasName = Widget_DanhMucCollection.ModelTypeAlias, Action = DanhMucCollection_Render });
+        mappModels.Add(new MappModel { AliasName = Widget_SanPhamNoiBat.ModelTypeAlias, Action = SanPhamNoiBat_Render });
+        mappModels.Add(new MappModel { AliasName = Widget_ImageGallery.ModelTypeAlias, Action = ImageGallery_Render });
+    }
+
+    public void HomeBanner_Render(IPublishedContent document, IPublishedElement widget)
+    {
+        var widgetItem = widget as Widget_Banner;
+        var imageSrc = widgetItem?.Widget_banner_anhHienThi?.Url() ?? "/assets/images/large/banner image.webp";
+        var gridText = widgetItem?.Widget_banner_freeText;
+
+        <section class="main_banner_container @nameof(Widget_Banner)">
+            <img class="main_banner_img" src="@imageSrc" alt="home banner" />
+            <span class="main_banner_freetext container-fluid">
+                @Html.GetGridHtml(widget, nameof(Widget_Banner.Widget_banner_freeText), "bootstrap3")
+            </span>
+        </section>
+    }
+
+    public void FreeText_Render(IPublishedContent document, IPublishedElement widget)
+    {
+        var convertedWidget = widget as Widget_FreeText;
+
+        <section class="@nameof(Widget_FreeText) py-2">
+            <div class="container">
+                <div class="freeText_main">@Html.Raw(convertedWidget?.Widget_freeText_content)</div>
+            </div>
+        </section>
+    }
+
+    public void Banner_Render(IPublishedContent document, IPublishedElement widget)
+    {
+        var convertedWidget = widget as Widget_BannerDanhMuc;
+
+        <section class="@nameof(Widget_BannerDanhMuc)">
+            <div>
+                <img class="bannerDanhmuc_img" src="@convertedWidget?.Widget_BannerDanhMuc_anh?.Url()" alt="banner danh muc" />
+            </div>
+        </section>
+    }
+
+    public void SanPhamTheoDanhMuc_Render(IPublishedContent document, IPublishedElement widget)
+    {
+        var convertedWidget = widget as Widget_HienThiSanPhamTheoDanhMuc;
+        var categoryId = convertedWidget?.Widget_HienThiSanPhamTheoDanhMuc_chonDanhMuc?.Id;
+
+        var quanLyMauSanPham = Umbraco.Content(Constants.DocumentContent.Key.ColorList) as QuanLyMauSanPham;
+        var quanLyKichCoSanPham = Umbraco.Content(Constants.DocumentContent.Key.SizeList) as QuanLyKichCoSanPham;
+
+        <section class="@nameof(Widget_HienThiSanPhamTheoDanhMuc) py-5">
+            <div class="container-fluid category_product_container" categoryId="@categoryId">
+                <div class="d-flex justify-content-center pt-3 pb-5">
+                    <h1>@document?.Name</h1>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 ">
+                        <aside class="category_products_sidebar is-sticky">
+                            <div class="category_products_filterArea container-sm">
+                                <div class="row filter_size">
+                                    <label>@Umbraco.GetDictionaryValue("Size")  </label>
+                                    <select class="select_filter_size" multiple></select>
+                                </div>
+                                <hr />
+                                <div class="row filter_color">
+                                    <label>@Umbraco.GetDictionaryValue("Color") </label>
+                                    <select class="select_filter_color" multiple></select>
+                                </div>
+                                <hr />
+                                <div class="row order_product_container">
+                                    <label>@Umbraco.GetDictionaryValue("Order_by") </label>
+                                    <select class="select_order_product form-control"></select>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 py-5 py-md-0 py-lg-0">
+                        <div class="product_item_list">
+                        </div>
+                        <div class="row mt-4">
+                            <div class="category_product_pagination mt-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+
+    public void ChiTietSanPham_Render(IPublishedContent document, IPublishedElement widget)
+    {
+        <section class="@nameof(Widget_ChiTietSanPham)">
+            @Html.Partial("/Views/Partials/widget/_widget_chitietsanpham.cshtml")
+        </section>
+    }
+
+    public void SanPhamLienQuan_Render(IPublishedContent document, IPublishedElement widget)
+    {
+        var productItem = document as SanPham_base;
+        var product_categories = productItem?.SanPham_danhMuc?.Select(x => x.Id);
+
+        var relatedProducts = Enumerable.Empty<SanPham_base>();
+
+        var result = Umbraco.Content(Constants.DocumentContent.Key.ProductsList)
+                        ?.Children<SanPham_base>()
+                        ?.Where(x => x.Id != productItem.Id)
+                        ?.Where(x => x.SanPham_danhMuc?.Any(d => product_categories?.Contains(d.Id) == true) == true)
+                        .Take(4);
+
+
+        if (result?.Any() == true)
+        {
+            <section class="@nameof(Widget_SanPhamLienQuan) py-5">
+                <div class="container-fluid py-4">
+                    <div class="d-flex justify-content-center py-4">
+                        <h5 class="text-uppercase">You may also like</h5>
+                    </div>
+                    <div class="product_item_list py-4 px-2 px-lg-5">
+                        @foreach (var product in result)
+                        {
+                            <div class="row productCard">
+                                <a href="@product.Url()" class="col-12 product_item_link">
+                                    <div class="row">
+                                        <img class="product_item_img" loading="lazy" data-src="@product.SanPham_anhSanPham?.First()?.Url()">
+                                    </div>
+                                    <div class="row">
+                                        <div class="py-3 productTitle">@product.SanPham_tenSanPham</div>
+                                        <div class="">FROM $ @product.SanPham_giaTien</div>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </section>
+        }
+    }
+
+    public void SanPhamDaXem_Render(IPublishedContent document, IPublishedElement widget)
+    {
+        <section class="@nameof(Widget_SanPhamDaXem)">
+            <div class="container-fluid py-5">
+                <div class="d-flex justify-content-center py-2">
+                    <h5 class="text-uppercase">Recent view</h5>
+                </div>
+                <div class="recentview_productList py-1 px-lg-5 px-2">
+                </div>
+            </div>
+        </section>
+    }
+
+    public void Grid_Render(IPublishedContent document, IPublishedElement widget)
+    {
+        <section class="@nameof(Widget_Grid)">
+            <div class="py-4 py-lg-5 py-xl-5 py-sm-5">
+                @Html.GetGridHtml(widget, "widget_grid_content", "bootstrap3")
+            </div>
+        </section>
+    }
+
+    public void DanhMucCollection_Render(IPublishedContent document, IPublishedElement widget)
+    {
+        var widgetItem = widget as Widget_DanhMucCollection;
+        var categories = widgetItem?.Widget_DanhMucCollection_danhSachDanhMuc;
+
+        @if (categories?.Any() == true)
+        {
+            <section class="@nameof(Widget_DanhMucCollection)">
+                <div class="container-fluid py-5">
+                    <div class="category_collection_list py-1">
+                        @foreach (var item in categories)
+                        {
+                            var category = item as DanhMuc;
+                            var firstProduct = category.Children().FirstOrDefault() as SanPham_base;
+                            var imageSrc = category?.CompositionAnhItem_imageItem?.Url() ??
+                            firstProduct?.SanPham_anhSanPham?.FirstOrDefault()?.Url() ??
+                            "/assets/images/normal/Edette_750x960_crop_left.jpg";
+                            <div class="category_item">
+                                <img class="category_image" src="@imageSrc" />
+                                <span class="category_title">
+                                    <h3 class="text-uppercase">@category.DanhMuc_tieuDe</h3>
+                                </span>
+                                <span class="category_link">
+                                    <a href="@category.Url()" class="btn btn-outline-dark text-uppercase">@Umbraco.GetDictionaryValue("View Products")</a>
+                                </span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </section>
+        }
+    }
+
+    public void SanPhamNoiBat_Render(IPublishedContent document, IPublishedElement widget)
+    {
+        var convertedWidget = widget as Widget_SanPhamNoiBat;
+        var title = convertedWidget?.Widget_SanPhamNoiBat_tieuDe;
+        var products = convertedWidget?.Widget_SanPhamNoiBat_danhSachSanPham;
+        var otherLink = convertedWidget?.Widget_SanPhamNoiBat_lienKetKhac;
+
+        <section class="@nameof(Widget_SanPhamNoiBat)">
+            <div class="container-fluid py-5">
+                <div class="hot_product_description py-2">
+                    @Html.Raw(title)
+                </div>
+                @if (products?.Any() == true)
+                {
+                    <div class="hot_product_list py-2">
+                        @foreach (var item in products)
+                        {
+                            var product = item as SanPham_base;
+                            var productName = product?.SanPham_tenSanPham;
+                            var productImage = product?.SanPham_anhSanPham?.FirstOrDefault()?.Url();
+                            var price = product?.SanPham_giaTien;
+
+                            <div class="row productCard">
+                                <a href="@product?.Url()" class="col-12 product_item_link">
+                                    <div class="row">
+                                        <img class="product_item_img" loading="lazy" data-src="@productImage">
+                                    </div>
+                                    <div class="row">
+                                        <div class="py-3 ">@productName</div>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                }
+                @if (otherLink != null)
+                {
+                    <div class="hot_product_link d-flex justify-content-center pt-5 pb-4">
+                        <a href="@otherLink.Url" class="btn btn-outline-dark text-uppercase" target="@otherLink.Target">@otherLink.Name</a>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+
+    public void ImageGallery_Render(IPublishedContent document, IPublishedElement widget)
+    {
+        var convertedWidget = widget as Widget_ImageGallery;
+        var images = convertedWidget?.Widget_ImageGalleryImages;
+
+        @if (images?.Any() == true)
+        {
+            <section class="@nameof(Widget_ImageGallery) py-5">
+                <div class="py-2">
+                    @Html.Raw(convertedWidget?.Widget_ImageGallery_tieuDe)
+                </div>
+                <div class="container-fluid py-1 image_gallery_list">
+                    @foreach (var image in images)
+                    {
+                        var imageSrc = image.Url();
+                        var imageTitle = image.Name;
+                        var imageId = image.Id;
+
+                        <div class="image_gallery_card">
+                            <a href="@imageSrc" class="js-img-viewer" data-caption="@imageTitle" data-id="@imageId">
+                                <img src="@imageSrc" data-group="group">
+                            </a>
+                        </div>
+                    }
+                </div>
+            </section>
+        }
+    }
+}

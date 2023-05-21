@@ -1,0 +1,12 @@
+﻿@font-face {
+    font-family: "Baskervville";
+    font-weight: 400;
+    src: url(/assets/Fonts/Gilroy-Regular.woff);
+}
+
+@font-face {
+    font-family: "Baskervville";
+    font-weight: bolder;
+    src: url(/assets/Fonts/Gilroy-Bold.woff);
+}
+

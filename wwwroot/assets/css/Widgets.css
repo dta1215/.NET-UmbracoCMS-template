@@ -1,0 +1,318 @@
+﻿/*#region San pham theo danh muc*/
+.product_item_list {
+    display: grid;
+    grid-template-columns: 23% 23% 23% 23%;
+    justify-content: space-between;
+    grid-row-gap: 4em;
+}
+.productTitle{
+}
+.category_product_pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fstResultItem {
+    font-size: 1em !important;
+}
+.fstControls .fstQueryInput {
+    font-size: 1em !important;
+}
+.fstResultItem.fstSelected, .fstResultItem:hover {
+    background-color: #3333 !important;
+    border-color: white !important;
+    color: #333 !important;
+}
+.fstChoiceItem {
+    background-color: #333333d4 !important;
+    border: none !important;
+}
+
+.order_product_container {
+    display: grid;
+    grid-template-columns: 29% 69%;
+}
+.order_product_container, .filter_size, .filter_color {
+    display: grid !important;
+    grid-template-columns: 31% 69% !important;
+    align-items: center;
+}
+/*#endregion*/
+/*#region Banner */
+.bannerDanhmuc_img {
+    width: 100%;
+}
+/*#endregion*/
+
+/*#region Home Banner */
+.main_banner_freetext {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    bottom: 50%;
+    left: 0;
+    right: 0;
+    height: fit-content;
+}
+/*#endregion*/
+
+
+
+/*#region Product detail */
+.slick-dots {
+    position: absolute;
+    display: block;
+    width: 0% !important;
+    bottom: unset !important;
+    padding: unset !important;
+    margin: unset !important;
+    top: 30%;
+    transform: translateY(-50%);
+    left: -20px;
+    z-index: 1;
+}
+.slick-dots li{
+    margin: 5px 5px !important;
+}
+.slick-dots li button:before{
+    font-size: 30px !important;
+    padding: 10px 0;
+}
+
+
+.sizeItem {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    transition: all .3s;
+    cursor: pointer;
+}
+.color_item {
+    padding: 2px 6px;
+    background: #08080826;
+    color: #565656;
+}
+.color_item:not(.out):hover, .color_item.active {
+    color: white;
+    background: #333333d4;
+}
+.color_item.out{
+    position: relative;
+}
+.color_item.out:before {
+    content: "";
+    height: 1px;
+    background: #000000c7;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: rotate3d(1, 1, 1, 336deg);
+}
+/*#endregion*/
+
+/*#region Recent view product  */
+/*.recentview_productList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}*/
+
+.product_item_img{
+    max-height: 460px;
+    height: 100%;
+}
+/*#endregion*/
+
+/*#region Danh muc collection  */
+.category_collection_list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.category_item {
+    position: relative;
+    max-width: calc(100%/3.1);
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+.category_item:before {
+    content: "";
+    position: absolute;
+    background: linear-gradient(351deg, #333333a6, transparent);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+}
+.category_image {
+    display: block;
+    width: 100%;
+    max-height: 600px;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: all 1s;
+    z-index: 1;
+}
+.category_item:hover > .category_image {
+    transform: scale(1.2);
+}
+.category_title {
+    position: absolute;
+    bottom: 20%;
+    z-index: 2;
+}
+
+.category_title, .category_title *{
+    color: white;
+}
+.category_link {
+    position: absolute;
+    bottom: 10%;
+    z-index: 2;
+}
+.category_link .btn{
+    text-decoration: none !important;
+}
+/*#endregion*/
+
+/*#region Danh sach san pham noi bat  */
+.hot_product_list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.hot_product_list .productCard{
+    max-width: calc(100% /4);
+}
+/*#endregion*/
+
+
+/*#region Cart  */
+.cart_img {
+    display: block;
+    width: 100%;
+}
+/*#endregion*/
+
+/*#region Cart  */
+.checkout_container .cart_main {
+    max-height: 100%;
+    height: 100%;
+}
+.cart_left_area {
+    border-right: solid #d7d7d7 1px;
+}
+.cart_right_area {
+    background: #c7c7c733;
+}
+.cart_panel_main {
+    height: 100%;
+    position: relative;
+}
+footer.slide-out-footer {
+    position: absolute !important;
+    bottom: 0;
+}
+
+.checkout_container .cart_img {
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    background: white;
+    border-radius: 10px;
+    border: solid #d1d1d1 1px;
+}
+.checkout_cart_title{
+    font-weight: bolder;
+}
+.cart_image_container {
+    position: relative;
+}
+.cart_image_container {
+    width: 70px;
+    height: 70px;
+}
+.cart_quantity {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: #343434;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-weight: bolder;
+}
+.checkout_total_value {
+    font-weight: bolder;
+    font-size: 1.5em;
+}
+/*#endregion*/
+
+
+/*#region Image gallery  */
+.image_gallery_list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    max-height: 500px;
+    overflow: hidden;
+    overflow-x: scroll;
+    grid-gap: 1em;
+}
+.image_gallery_card {
+    min-width: 200px;
+}
+.image_gallery_card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.Widget_ImageGallery ::-webkit-scrollbar {
+    width: 10%;
+    height: 8px;
+}
+
+/* Track */
+.Widget_ImageGallery ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.Widget_ImageGallery ::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+}
+
+/* Handle on hover */
+.Widget_ImageGallery ::-webkit-scrollbar-thumb:hover {
+    background: #c1c1c1;
+}
+
+
+#lightboxed--container #lightboxed--stage #lightboxed--content .lightboxed--active body {
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
+#lightboxed--container #lightboxed--stage #lightboxed--content .lightboxed--active img {
+    display: block;
+    -webkit-user-select: none;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+
+/*#endregion*/
+

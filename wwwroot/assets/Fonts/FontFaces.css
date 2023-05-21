@@ -1,0 +1,45 @@
+﻿@font-face {
+    font-family: 'BOOKOS';
+    src: url('/assets/Fonts/BOOKOS.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'calibril';
+    src: url('/assets/Fonts/calibril.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Cour';
+    src: url('/assets/Fonts/Cour.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'DancingScriptRegular';
+    src: url('/assets/Fonts/DancingScript-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'georgia';
+    src: url('/assets/Fonts/georgia.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'VERDANAI';
+    src: url('/assets/Fonts/VERDANAI.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'SVN-Gilroy';
+    src: local('SVN-Gilroy'), url('/assets/Fonts/SVNGilroy Light.woff') format('woff');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'SVN-Gilroy';
+    src: local('SVN-Gilroy'), url('/assets/Fonts/SVN-GilroySemiBold.woff2') format('woff2');
+    font-style: normal;
+    font-weight: 700;
+}
+

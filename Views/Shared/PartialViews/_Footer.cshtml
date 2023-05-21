@@ -1,0 +1,15 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using UmbracoBoutique.Services.DTO;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    Layout = null;
+
+    var footerDocument = Umbraco.Content(UmbracoBoutique.Constants.DocumentContent.Key.Footer) as Footer;
+    var danhSachThanhPhan = footerDocument?.Footer_danhSachThanhPhanHienThi;
+}
+
+@if (danhSachThanhPhan?.Any() == true)
+{
+    @Html.Partial("/Views/Partials/widget/_AddWidgetMethod.cshtml", new WidgetMethodModel { Document = footerDocument, DanhSachWidgets = danhSachThanhPhan })
+}

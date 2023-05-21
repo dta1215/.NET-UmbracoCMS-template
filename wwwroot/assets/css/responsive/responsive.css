@@ -1,0 +1,153 @@
+﻿@media only screen and (max-width: 600px) {
+    .header_container {
+        display: none;
+    }
+    .marginTop {
+        margin-top: 50px;
+    }
+    .header_mobile{
+        display: block;
+    }
+    .header_mobile {
+        height: 50px;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+        background: white;
+        width: 100%;
+        border-bottom: solid white 1px;
+    }
+    .header_mobile {
+        border-bottom: solid #8b8b8b7a 1px;
+        box-shadow: 0px 2px 9px 0px #8986864d;
+        z-index: 9999;
+    }
+
+    .hc-offcanvas-nav .nav-container, .hc-offcanvas-nav .nav-wrapper, .hc-offcanvas-nav ul {
+        background: white;
+    }
+    .hc-offcanvas-nav .nav-content > .nav-close a:hover {
+        background: #3333;
+    }
+    .nav-close span {
+        display: none;
+    }
+    .hc-offcanvas-nav a.nav-next:before {
+        background: unset !important;
+    }
+    .hc-offcanvas-nav.nav-levels-expand li.level-open > .nav-wrapper::before, .hc-offcanvas-nav.nav-levels-none li .nav-wrapper::before {
+        background: transparent !important;
+    }
+    .hc-offcanvas-nav .nav-next span::before, .hc-offcanvas-nav .nav-back span::before {
+        border-top: 2px solid #000;
+        border-left: 2px solid #000;
+    }
+
+    .header_mobile #select_language {
+        background: transparent;
+        color: black !important; 
+    }
+    .nav-container hr{
+        color: black;
+    }
+
+
+    /*#region San pham noi bat  */
+    .hot_product_list, .category_collection_list, .hot_product_list {
+        flex-direction: column;
+    }
+    .productCard, .category_item, .hot_product_list .productCard {
+        max-width: calc(100%);
+    }
+    /*#endregion */
+
+    /*#region Collection  */
+    .category_item{
+        margin: 4px 0;
+    }
+    /*#endregion */
+
+
+    /*#region San pham theo danh muc  */
+    .product_item_list {
+        grid-template-columns: 99%;
+    }
+    .order_product_container, .filter_size, .filter_color {
+        grid-template-columns: 99% !important;
+    }
+    /*#endregion */
+
+    .cart_panel_main {
+        height: 100vh;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media  screen and (min-width: 600px) and (max-width: 900px) {
+    .marginTop {
+        margin-top: 50px;
+    }
+    .header_mobile {
+        display: block !important;
+    }
+    .header_container{
+        display: none;
+    }
+    .header_mobile {
+        height: 50px;
+        position: fixed;
+        top: 0;
+        z-index: 2;
+        background: white;
+        width: 100%;
+        border-bottom: solid white 1px;
+    }
+
+    .header_mobile {
+        border-bottom: solid #8b8b8b7a 1px;
+        box-shadow: 0px 2px 9px 0px #8986864d;
+        z-index: 9999;
+    }
+    .hot_product_list, .category_collection_list, .hot_product_list {
+        flex-direction: column;
+    }
+
+    .productCard, .category_item, .hot_product_list .productCard {
+        max-width: calc(100%);
+    }
+
+    .product_item_img {
+        max-height: max-content;
+    }
+
+    .category_image {
+        max-height: max-content;
+    }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media screen and (min-width: 900px) and (max-width: 1340px) {
+    .header_mobile {
+        display: none !important;
+    }
+    .hot_product_list, .category_collection_list, .hot_product_list {
+        flex-direction: column;
+    }
+    .productCard, .category_item, .hot_product_list .productCard {
+        max-width: calc(100%);
+    }
+    .product_item_img{
+        max-height: max-content;
+    }
+    .category_image {
+        max-height: max-content;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1340px) {
+    .header_mobile {
+        display: none !important;
+    }
+}

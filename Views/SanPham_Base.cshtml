@@ -1,0 +1,134 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using UmbracoBoutique.Services.DTO;
+@{
+	Layout = "Layout.cshtml";
+}
+
+@{
+	var productDocument = Model as SanPham_base;
+
+	var danhSachNoiDungDauTrang = productDocument?.SanPham_Base_widget_top;
+	var danhSachNoiDungChinh = productDocument?.SanPham_Base_widget_bottom;
+}
+
+@if(danhSachNoiDungDauTrang?.Any() == true)
+{
+    <div class="widget_top">
+        @Html.Partial("/Views/Partials/widget/_AddWidgetMethod.cshtml", new WidgetMethodModel { Document = Model, DanhSachWidgets = danhSachNoiDungDauTrang})
+    </div>
+}
+
+@if(productDocument != null)
+{
+	<section>
+		<div class="container-fluid product_detail_container" productid="@productDocument?.Id">
+			<div class="row px-lg-5 px-3">
+				<div class="product_images slider col-12 col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+					@if (productDocument?.SanPham_anhSanPham?.Any() == true)
+					{
+						foreach (var productImage in productDocument.SanPham_anhSanPham)
+						{
+							<div class="image_item">
+								<span class='zoom zoomItem'>
+									<img class="product_img" src="@productImage.Url()" />
+								</span>
+							</div>
+						}
+					}
+				</div>
+				<div class="col-12 col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+					<aside class="product_detail_sidebar is-sticky">
+						<div class="product_detail_form">
+							<div class="row">
+								<div>RAFFINÉ</div>
+							</div>
+							<div class="row">
+								<div class="productTitle py-2">@productDocument?.SanPham_tenSanPham</div>
+								<div class="py-2">$@(productDocument?.SanPham_giaTien)</div>
+							</div>
+							<hr />
+							<div class="row">
+								@{
+									IEnumerable<string> categoryNames = productDocument?.SanPham_danhMuc?.Select(x =>
+									{
+										var item = x as DanhMuc;
+										return item.DanhMuc_tieuDe;
+									});
+								}
+								<div>
+									Category: @(string.Join(",", categoryNames))
+								</div>
+							</div>
+							<div class="row py-2">
+								<div>
+									@{
+										var sizeGroup = productDocument?.SanPhamBase_danhSachLoaiSanPham
+										?.GroupBy(x =>
+										{
+											var item = x as SanPham_loaiHang;
+											var sizeItem = item.SanPham_loaiHang_kichCo as KichCoSanPham;
+											return new
+											{
+												id = sizeItem?.Id,
+												size = sizeItem?.KichCoSanPham_content
+											};
+										});
+									}
+
+									@if (sizeGroup?.Any() == true)
+									{
+										<div class="sizes_container">
+											@foreach (var sizeItem in sizeGroup)
+											{
+												<div class="sizeItem py-1" sizeid="@sizeItem.Key.id">
+													<div>
+														<h5>@sizeItem.Key.size</h5>
+													</div>
+													<div class="colors_container ml-1">
+														@foreach (var color in sizeItem)
+														{
+															var loaihang = color as SanPham_loaiHang;
+															var quantity = loaihang?.SanPham_loaiHang_soLuong;
+															var colorItem = loaihang?.SanPham_loaiHang_mauSac as MauSanPham;
+															<span class="color_item @(quantity <= 0 ? "out" : "")"
+												  colorid="@colorItem?.Id"
+												  sizeid="@sizeItem?.Key?.id"
+												  productid="@productDocument?.Id"
+												  quantity="@quantity">@colorItem?.MauSanPham_content</span>
+														}
+													</div>
+												</div>
+											}
+										</div>
+									}
+								</div>
+							</div>
+							<div class="row py-2">
+								@*<div>
+									<label class="py-2">Quantity: <label class="product_detail_quantity"></label></label>
+								</div>*@
+							</div>
+							@*Lưu giỏ hàng*@
+							<div class="row py-2">
+								@if(sizeGroup?.Any() == true)
+								{
+									<a id="btnAddToCart" class="btn btn-outline-dark">ADD TO CART</a>
+								}
+							</div>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+
+@if (danhSachNoiDungChinh?.Any() == true)
+{
+	<div class="widget_main">
+		@Html.Partial("/Views/Partials/widget/_AddWidgetMethod.cshtml", new WidgetMethodModel { Document = Model, DanhSachWidgets = danhSachNoiDungChinh})
+	</div>
+}

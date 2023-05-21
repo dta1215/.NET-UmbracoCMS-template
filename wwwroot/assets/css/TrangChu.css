@@ -1,0 +1,36 @@
+﻿/*day la phan trang chu*/
+.main_banner_container {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+.main_banner_img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all .3s;
+    animation: bannerFadeIn 1.2s ease forwards;
+}
+
+.main_banner_container:before {
+    background-image: linear-gradient(355deg,#00000078,#0003);
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+@keyframes bannerFadeIn {
+    0% {
+        opacity: 0.9;
+        transform: scale(1.3);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+} 
