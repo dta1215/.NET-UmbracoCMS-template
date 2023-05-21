@@ -28,9 +28,8 @@ Nó cung cấp một nền tảng mạnh mẽ để xây dựng và quản lý c
 
 ## Màn hình quản lý Umbraco Backoffice:
 Màn hình quản lý nội dung (--Node editor)
-![Node editor screen](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/83e56e2d-5434-4401-81b7-9e42147b87a4)
-
-![Node editor sub items](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/db2b65fa-c9f4-4f9b-af16-cdd5b9b847ef)
+<br/>
+<img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/83e56e2d-5434-4401-81b7-9e42147b87a4" width="45%"></img> <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/db2b65fa-c9f4-4f9b-af16-cdd5b9b847ef" width="45%"></img> 
 
 Các thao tác với Node content
 ![node editor info](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/846e2211-b693-42bb-8c55-245a8cd25238)
@@ -45,12 +44,11 @@ Màn hình cấu trúc Node (Document type, Element type)
 ![Setting Category screen](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/4ce04f82-6d07-42db-877e-ed9601ebf73f)
 
 Quản lý và chuyển đổi nhiều loại ngôn ngữ dễ dàng
-![Language management section](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/d45c74cd-6b9e-4007-90e0-db836fef95bd)
-![Easy switch language in editor](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/5676d82a-5063-4dbb-9aae-6c5d0ae69992)
+<br/>
+<img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/d45c74cd-6b9e-4007-90e0-db836fef95bd" width="25%"></img> <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/5676d82a-5063-4dbb-9aae-6c5d0ae69992" width="25%"></img> 
 
 Giống như plugin trong Wordpress. Umbraco CMS cũng cho phép người dùng sáng tạo nhiều loại Widget. Các lập trình viện có thể tùy biến thêm nhiều loại đa dạng
-![Widget list](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/5e5f673a-4340-4631-bab1-f744c07c3b51)
-![widget list 2](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/6ad34ee9-b620-48be-a9e1-2175755d1d42)
-
+<br/>
+<img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/8e2f890c-9382-402a-b53f-ffa1d85e8c1a" width="25%"></img> <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/14da35a3-a7c9-4fb9-9313-f10d92e6331d" width="25%"></img> 
 
 
