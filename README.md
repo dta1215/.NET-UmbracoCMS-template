@@ -3,16 +3,18 @@ UmbracoCMS stater kit cho người mới bắt đầu
 
 ![Umbraco back office](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/2231069c-3887-4ea9-b417-e14d84aa0a72)
 
-Table of content: 
-<ul>
-  <li><a href="/#user-content-demo">Demo</a></li>
-</ul>
+Table of content:
+*[Demo](#demo)
+*[Tổng quan về Umbraco CMS](#tongquan)
 
 
+
+Demo
+=
 ## Demo
 Dưới đây là demo website thời gian landing page được xây dựng bằng Umbraco CMS: <a href="https://boutique-cms.site/" target="_blank">Demo</a>
 
-Tổng quan về <a href="https://umbraco.com/products/umbraco-cms/">Umbraco CMS</a>
+Tổng quan về Umbraco CMS
 =
 ## Tổng quan về <a href="https://umbraco.com/products/umbraco-cms/">Umbraco CMS</a>:
 <details><summary><b>Giới thiệu về Umbraco CMS</b></summary>
