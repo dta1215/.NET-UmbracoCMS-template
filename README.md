@@ -25,29 +25,40 @@ Nó cung cấp một nền tảng mạnh mẽ để xây dựng và quản lý c
 </details>
 
 ## Màn hình quản lý Umbraco Backoffice:
-Màn hình quản lý nội dung (`Node editor`)
-<br/>
-<img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/83e56e2d-5434-4401-81b7-9e42147b87a4" width="45%"></img> <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/db2b65fa-c9f4-4f9b-af16-cdd5b9b847ef" width="45%"></img> 
+<details>
+  <summary><b>Màn hình quản lý nội dung (`Node editor`)</b></summary>
+  <br/>
+  <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/83e56e2d-5434-4401-81b7-9e42147b87a4" width="45%"></img>   <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/db2b65fa-c9f4-4f9b-af16-cdd5b9b847ef" width="45%"></img> 
+</details>
+<details>
+  <summary><b>Các thao tác với `Node content`</b></summary>
+  <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/846e2211-b693-42bb-8c55-245a8cd25238" width="100%"</img>
+</details>
+<details>
+  <summary><b>Màn hình quản lý media gồm nhiều định dạng như: Ảnh, Video, File,... Với cấu trúc cây thư mục và giao diện thân thiện</b></summary>
+  <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/7cdf924f-0e50-45c4-9b39-df3c3e7b82e8" width="100%"></img>
+</details>
+<details>
+  <summary><b>Tìm kiếm tất cả mọi thứ một cách dễ dàng</b></summary>
+  <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/0ad96043-0d1d-4f63-8892-0afa92e716e7" width="100%"</img>
+</details>
 
-Các thao tác với `Node content`
-![node editor info](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/846e2211-b693-42bb-8c55-245a8cd25238)
-
-Màn hình quản lý media gồm nhiều định dạng như: Ảnh, Video, File,... Với cấu trúc cây thư mục và giao diện thân thiện
-![Media management screen](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/7cdf924f-0e50-45c4-9b39-df3c3e7b82e8)
-
-Tìm kiếm tất cả mọi thứ một cách dễ dàng
-![Search ](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/0ad96043-0d1d-4f63-8892-0afa92e716e7)
-
-Màn hình cấu trúc Node (`Document type`, `Element type`) 
-![Setting Category screen](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/4ce04f82-6d07-42db-877e-ed9601ebf73f)
-
-Quản lý và chuyển đổi nhiều loại ngôn ngữ dễ dàng
-<br/>
-<img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/d45c74cd-6b9e-4007-90e0-db836fef95bd" width="25%"></img> <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/5676d82a-5063-4dbb-9aae-6c5d0ae69992" width="25%"></img> 
-
-Giống như `Plugin` trong `Wordpress`. `Umbraco CMS` cũng cho phép người dùng sáng tạo nhiều loại `Widget`. 
-Các lập trình viên có thể dễ dàng tùy biến đa dạng theo nhu cầu dự án.
-<br/>
-<img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/8e2f890c-9382-402a-b53f-ffa1d85e8c1a" width="25%"></img> <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/14da35a3-a7c9-4fb9-9313-f10d92e6331d" width="25%"></img> 
-
+<details>
+  <summary><b>Màn hình cấu trúc Node (`Document type`, `Element type`) </b></summary>
+  <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/4ce04f82-6d07-42db-877e-ed9601ebf73f" width="100%"></img>
+</details>
+<details>
+  <summary><b>Quản lý và chuyển đổi nhiều loại ngôn ngữ dễ dàng</b></summary>
+  <br/>
+  <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/d45c74cd-6b9e-4007-90e0-db836fef95bd" width="25%"></img>   <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/5676d82a-5063-4dbb-9aae-6c5d0ae69992" width="25%"></img> 
+</details>
+<details>
+  <summary><b>Widget</b></summary>
+  <div>
+    Giống như `Plugin` trong `Wordpress`. `Umbraco CMS` cũng cho phép người dùng sáng tạo nhiều loại `Widget`. 
+    Các lập trình viên có thể dễ dàng tùy biến đa dạng theo nhu cầu dự án.
+  </div>
+  <br/>
+  <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/8e2f890c-9382-402a-b53f-ffa1d85e8c1a" width="25%"></img>   <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/14da35a3-a7c9-4fb9-9313-f10d92e6331d" width="25%"></img> 
+</details>
 
