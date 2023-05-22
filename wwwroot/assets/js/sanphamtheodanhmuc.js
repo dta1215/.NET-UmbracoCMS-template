@@ -12,21 +12,23 @@ var SanPhamTheoDanhMucHandler = (function () {
     }
 
     async function API(data) {
+        Loading(true)
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: '/home/product_by_category',
                 type: 'GET',
                 data: data,
                 success: function (data) {
+                    Loading(false)
                     resolve(data)
                 },
                 error: function () {
+                    Loading(false)
                     rootObj.$productList.html("Không tìm thấy kết quả nào")
                     rootObj.$productList.data("totalRows", 0)
                     reject(...arguments)
                 }
             });
-
         })
     }
 

@@ -67,7 +67,7 @@ var ChiTietSanPhamHandler = (function () {
             }
         })
 
-        root.$btnAddToCart.click((e) => {
+        root.$btnAddToCart.click(debounce((e) => {
             let selectedItem = root.$color_items.filter(".active")
             let productId = selectedItem.attr("productid");
             let sizeId = selectedItem.attr("sizeid");
@@ -80,18 +80,21 @@ var ChiTietSanPhamHandler = (function () {
                 Quantity: 1
             }
             AddToCartAPI(data).then((res) => {
-
                 $.publish("onCartChange")
             })
-        })
+        }, 500))
     }
 
     function AddToCartAPI(data) {
+        Loading(true)
         return new Promise(async (resolve, reject) => {
             try {
-                let res = await $.post("/addtocart", {data: data})
+                let res = await $.post("/addtocart", { data: data })
+                Loading(false)
                 resolve(res)
+
             } catch (err) {
+                Loading(false)
                 reject(err)
             }
         })

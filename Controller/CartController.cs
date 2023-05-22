@@ -30,28 +30,28 @@ namespace UmbracoBoutique.Controller
 		}
 
 		[HttpPost("addtocart")]
-		public IActionResult AddToCart(AddToCartModel data)
+		public async Task<IActionResult> AddToCart(AddToCartModel data)
 		{
 			_cartService.AddCart(data);
 			return Ok();
 		}
 
         [HttpPost("removeitem")]
-        public IActionResult RemoveCartItem(AddToCartModel data)
+        public async Task<IActionResult> RemoveCartItem(AddToCartModel data)
         {
             _cartService.RemoveCart(data);
             return Ok();
         }
 
         [HttpGet("carts")]
-		public IActionResult Carts()
+		public async Task<IActionResult> Carts()
 		{
 			var items = _cartService.Carts();
 			return Ok(items);
 		}
 
 		[HttpGet("cartcount")]
-		public IActionResult CartCount()
+		public async Task<IActionResult> CartCount()
 		{
 			var count = _cartService.Carts()?.Count() ?? 0;
 			return Ok(count);

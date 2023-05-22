@@ -28,11 +28,16 @@ var CartHandler = (function () {
         })
     }
     function AddCartAPI(data) {
+        Loading(true)
         return new Promise(async (resolve, reject) => {
             try {
                 let res = await $.post("/addtocart", { data: data })
+                Loading(false)
+
                 resolve(res)
             } catch (err) {
+                Loading(false)
+
                 reject(err)
             }
         })
@@ -68,9 +73,12 @@ var CartHandler = (function () {
         root.$btnCheckoutCart = root.cart_panel.find("#btnCheckoutCart")
     }
 
+
     function Events() {
         //Open cart from header
-        root.$btnOpenCartHeader.click(() => {
+        root.$btnOpenCartHeader.click((e) => {
+            e.preventDefault();
+
             LoadCartsAPI().then((res) => {
                 if (res) {
                     RenderCart(res)
@@ -79,7 +87,8 @@ var CartHandler = (function () {
             root.cart_panel.open()
         })
 
-        root.cart_panel.delegate(".input_item_quantity", "change", (e) => {
+
+        root.cart_panel.delegate(".input_item_quantity", "change", debounce((e) => {
             let target = e.target
 
             if ($(target).val()) {
@@ -93,7 +102,7 @@ var CartHandler = (function () {
                     $.publish("onCartChange")
                 })
             }
-        })
+        }, 500))
 
         root.cart_panel.delegate(".btnRemoveItem", "click", (e) => {
             e.preventDefault()
