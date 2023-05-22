@@ -51,7 +51,7 @@ namespace UmbracoBoutique.Controller
         
 
         [HttpGet("product_by_category")]
-        public IActionResult ProductByCategory(ProductQueryParameterModel model)
+        public async Task<IActionResult> ProductByCategory(ProductQueryParameterModel model)
         {
             var dataSet = _commonService.ProductByCategory(model);
 
@@ -62,7 +62,7 @@ namespace UmbracoBoutique.Controller
         }
 
         [HttpGet("color_list")]
-        public IActionResult ColorList(string culture = "en-US")
+        public async Task<IActionResult> ColorList(string culture = "en-US")
         {
             var items = _commonService.GetColorList(culture);
             //Check null
@@ -72,7 +72,7 @@ namespace UmbracoBoutique.Controller
         }
 
         [HttpGet("size_list")]
-        public IActionResult SizeList(string culture = "en-US")
+        public async Task<IActionResult> SizeList(string culture = "en-US")
         {
             var items = _commonService.GetSizeList(culture);
             //Check null
@@ -82,7 +82,7 @@ namespace UmbracoBoutique.Controller
         }
 
         [HttpPost("products")]
-        public IActionResult Products(List<string> Ids, string culture = "en-US")
+        public async Task<IActionResult> Products(List<string> Ids, string culture = "en-US")
         {
             var items = _commonService.GetProducts(Ids, culture);
             //Check null
@@ -92,7 +92,7 @@ namespace UmbracoBoutique.Controller
         }
 
         [HttpGet("/search")]
-        public IActionResult Search(string key = "")
+        public async Task<IActionResult> Search(string key = "")
         {
             var searchResultModel = _commonService.Search(key);
 
@@ -105,12 +105,6 @@ namespace UmbracoBoutique.Controller
 
             TempData["SearchResultModel"] = JsonConvert.SerializeObject(searchResultModel);
             return View("~/Views/Search.cshtml");
-        }
-
-        [HttpGet("widget_gallery")]
-        public IActionResult WidgetGalleryImages()
-        {
-            return Ok();
         }
     }
 }

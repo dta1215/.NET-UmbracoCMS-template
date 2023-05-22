@@ -29,7 +29,7 @@ namespace UmbracoBoutique.Controller
         }
 
         [HttpGet("checkout")]
-        public ActionResult Index()
+        public IActionResult Index()
         {
 
             return View("/Views/CheckOut.cshtml"); 

@@ -1,5 +1,4 @@
 ﻿$(function () {
-
     FixedHeader();
     LazyLoadingImage();
     SelectLangChange();
@@ -11,6 +10,22 @@
 
     WidgetGalleryImageHandler.init();
 })
+
+function Loading(state = false, selector = "body") {
+    $(selector).loadingView({
+        'image': "/assets/libs/loading-indicator-view/loadingImage.gif",
+        'imageClassName': "loadingImage",
+        'state': state
+    });
+}
+
+function debounce(func, timeout = 500) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
+}
 
 ;(function () {
     var o = $({});

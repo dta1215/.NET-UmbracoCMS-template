@@ -11,7 +11,8 @@ html, body {
 
 html * {
     font-size: 12px;
-    font-family: "Baskervville";
+    /*font-family: "Baskervville";*/
+    font-family: Arial;
     letter-spacing: 2.4px;
     line-height: 19px;
     color: #363636;
@@ -193,4 +194,8 @@ form .error {
 
 .marginTop{
     margin-top: 83px;
+}
+
+.loadingImage {
+    max-width: 50px;
 }
