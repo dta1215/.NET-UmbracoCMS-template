@@ -1,17 +1,19 @@
 # .NET-UmbracoCMS-template (Tiếng việt)
-UmbracoCMS stater kit cho người mới bắt đầu
+**UmbracoCMS stater kit**
+<br/>
+Nhận thấy tài liệu Umbraco CMS chưa phổ biến nhiều tại Việt Nam, ngày hôm nay em xin chia sẻ với mọi người một project nhỏ hữu ích với những người mới tìm hiểu về .NET CMS nói chung và Umbraco CMS nói riêng có một cái nhìn khái quát và dễ hình dung hơn; xậy dựng một CMS nhanh chóng với nhiều tính năng có thể tái sử dụng...
 
-![Umbraco back office](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/2231069c-3887-4ea9-b417-e14d84aa0a72)
-
-Table of content:
+## Phụ lục:
 * [Demo](#demo)
 * [Tổng quan về Umbraco CMS](#tổng-quan-về-umbraco-cms)
 * [Màn hình quản lý Umbraco Backoffice](#màn-hình-quản-lý-umbraco-backoffice)
 * [Hướng dẫn cài đặt và chạy thử](#hướng-dẫn-cài-đặt-và-chạy-thử)
 
+![Umbraco back office](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/2231069c-3887-4ea9-b417-e14d84aa0a72)
+<hr>
 
 ## Demo
-Dưới đây là demo website thời gian landing page được xây dựng bằng Umbraco CMS: <a href="https://boutique-cms.site/" target="_blank">Demo</a>
+Dưới đây là demo website thời trang landing page được xây dựng bằng Umbraco CMS: <a href="https://boutique-cms.site/" target="_blank">Demo</a>
 
 ## Tổng quan về Umbraco CMS
 <details><summary><b>Giới thiệu về Umbraco CMS</b></summary>
