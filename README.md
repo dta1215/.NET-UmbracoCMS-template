@@ -4,19 +4,16 @@ UmbracoCMS stater kit cho người mới bắt đầu
 ![Umbraco back office](https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/2231069c-3887-4ea9-b417-e14d84aa0a72)
 
 Table of content:
-*[Demo](#demo)
-*[Tổng quan về Umbraco CMS](#tongquan)
+* [Demo](#demo)
+* [Tổng quan về Umbraco CMS](#tổng-quan-về-umbraco-cms)
+* [Màn hình quản lý Umbraco Backoffice](#màn-hình-quản-lý-umbraco-backoffice)
+* [Hướng dẫn cài đặt và chạy thử](#hướng-dẫn-cài-đặt-và-chạy-thử)
 
 
-
-Demo
-=
 ## Demo
 Dưới đây là demo website thời gian landing page được xây dựng bằng Umbraco CMS: <a href="https://boutique-cms.site/" target="_blank">Demo</a>
 
-Tổng quan về Umbraco CMS
-=
-## Tổng quan về <a href="https://umbraco.com/products/umbraco-cms/">Umbraco CMS</a>:
+## Tổng quan về Umbraco CMS
 <details><summary><b>Giới thiệu về Umbraco CMS</b></summary>
   <a href="https://umbraco.com/products/umbraco-cms/">Umbraco CMS</a> là một hệ thống quản lý nội dung mã nguồn mở (CMS) được phát triển trên nền tảng ASP.NET. 
 Nó cung cấp một nền tảng mạnh mẽ để xây dựng và quản lý các trang web động, từ các trang web cá nhân đến các ứng dụng doanh nghiệp phức tạp. 
@@ -33,7 +30,7 @@ Nó cung cấp một nền tảng mạnh mẽ để xây dựng và quản lý c
   </ul>
 </details>
 
-## Màn hình quản lý Umbraco Backoffice:
+## Màn hình quản lý Umbraco Backoffice
 <details>
   <summary><b>Màn hình quản lý nội dung (`Node editor`)</b></summary>
   <br/>
@@ -71,8 +68,5 @@ Nó cung cấp một nền tảng mạnh mẽ để xây dựng và quản lý c
   <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/8e2f890c-9382-402a-b53f-ffa1d85e8c1a" width="25%"></img>   <img src="https://github.com/dta1215/.NET-UmbracoCMS-template/assets/65544626/14da35a3-a7c9-4fb9-9313-f10d92e6331d" width="25%"></img> 
 </details>
 
-
-HuongDan
-=
-## Hướng dẫn cài đặt và chạy thử demo
+## Hướng dẫn cài đặt và chạy thử
 
