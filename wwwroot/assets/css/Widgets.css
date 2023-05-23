@@ -60,7 +60,7 @@
 
 
 /*#region Product detail */
-.slick-dots {
+.product_detail_container .slick-dots {
     position: absolute;
     display: block;
     width: 0% !important;
@@ -72,10 +72,10 @@
     left: -20px;
     z-index: 1;
 }
-.slick-dots li{
+ .slick-dots li{
     margin: 5px 5px !important;
 }
-.slick-dots li button:before{
+ .slick-dots li button:before{
     font-size: 30px !important;
     padding: 10px 0;
 }

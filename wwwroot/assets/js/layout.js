@@ -143,7 +143,7 @@ function SelectLangChange() {
 
         function events() {
             //On first load()
-            if (settings.$recentview_productList?.length > 1) {
+            if (settings.$recentview_productList?.length > 0) {
                 Load()
             }
 
@@ -156,36 +156,10 @@ function SelectLangChange() {
                         API(Ids).then((items) => {
                             if (items) {
                                 RenderViewedProducts(items)
-
-                                //Khoi tao slick
-                                settings.$recentview_productList.slick({
-                                    cellAlign: 'left',
-                                    prevNextButtons: true,
-                                    freeScroll: true,
-                                    pageDots: false,
-                                    slidesToShow: 4,
-                                    slidesToScroll: 1,
-                                    responsive: [
-                                        {
-                                            breakpoint: 900,
-                                            settings: {
-                                                rows: 1,
-                                                slidesToShow: 3,
-                                                slidesToScroll: 1
-                                            }
-                                        },
-                                        {
-                                            breakpoint: 600,
-                                            settings: {
-                                                rows: 1,
-                                                slidesToShow: 1,
-                                                slidesToScroll: 1
-                                            }
-                                        }
-                                    ]
-
-                                });
                             }
+                        }).then(() => {
+                            //Khoi tao slick
+                            
                         })
                     }
                 }
@@ -241,6 +215,31 @@ function SelectLangChange() {
             }).join('');
 
             settings.$recentview_productList.html(resultHTML);
+
+            settings.$recentview_productList.slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                dots: true,
+                responsive: [
+                    {
+                        breakpoint: 900,
+                        settings: {
+                            rows: 1,
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            rows: 1,
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
 
             LazyLoadingImage();
         }
