@@ -15,7 +15,8 @@ Nhận thấy tài liệu Umbraco CMS chưa phổ biến nhiều tại Việt Na
 ## Demo
 Dưới đây là demo website thời trang landing page được xây dựng bằng Umbraco CMS: <a href="https://boutique-cms.site/" target="_blank">Demo</a>
 
-Đăng nhập trang admin: <a href="https://boutique-cms.site/umbraco" target="_blank">Trang Admin</a>
+Trang quản lý nội dung CMS (Backoffice): <a href="https://boutique-cms.site/umbraco" target="_blank">Trang Admin</a>
+<br>
 Tài khoản đăng nhập: test@gmail.com
 Mật khẩu: 123456aA!@
 
