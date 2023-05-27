@@ -194,39 +194,82 @@ namespace UmbracoBoutique.Services
             var searchDocument = _umbracoHelper.Content(Constants.DocumentContent.Key.SearchPage);
             var searchPageUrl = searchDocument?.Url();
 
-            if (!_examineManager.TryGetIndex(UmbracoIndexes.InternalIndexName, out var index) || !(index is IUmbracoIndex umbIndex))
+            IEnumerable<QueryResultModel> query = Enumerable.Empty<QueryResultModel>();
+            SearchResultModel searchResultModel = new SearchResultModel();
+
+            //Nếu key < 3 thì tìm tiêu đề của sản phẩm
+            if (key.Length < 3)
             {
-                return null;
-            }
-
-            var searcher = index.Searcher;
-            // Add time ticks (excution time counter)
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
-            var result = searcher.CreateQuery(IndexTypes.Content).ManagedQuery(key).Execute();
-            watch.Stop();
-
-            //Check null
-            if (!result.Any())
-            {
-                return null;
-            }
-
-            var query = _umbracoHelper.Content(result.Select(x => x.Id))
-                                        .Where(x => x.ContentType.CompositionAliases?.Any(a => a == SanPham_base.ModelTypeAlias) == true)
-                                        .Select(x =>
+                var itemList = _umbracoHelper.Content(Constants.DocumentContent.Key.ProductsList);
+                if(itemList?.Children<SanPham_base>()?.Any() == true)
+                {
+                    query = itemList.Children<SanPham_base>()
+                                    .Where(x => x.SanPham_tenSanPham.ToLower().Contains(key.ToLower())
+                                    || int.TryParse(key, out int number) ? x.SanPham_giaTien == int.Parse(key) : false
+                                    || x.CreateDate.ToString("dd/MM/yyyy") == key)
+                                    .Select(x =>
+                                    {
+                                        var sanphamBase = x as SanPham_base;
+                                        return new QueryResultModel
                                         {
-                                            var sanphamBase = x as SanPham_base;
-                                            return new QueryResultModel
+                                            Id = sanphamBase.Id,
+                                            Name = sanphamBase.Name,
+                                            Url = sanphamBase.Url(),
+                                            Price = sanphamBase.SanPham_giaTien,
+                                            CreateDate = sanphamBase.CreateDate.ToString(),
+                                            Image = sanphamBase.SanPham_anhSanPham?.FirstOrDefault()?.Url()
+                                        };
+                                    }).Take(8);
+
+                    searchResultModel.TotalRows = itemList.Children<SanPham_base>()
+                                                    .Where(x => x.SanPham_tenSanPham.ToLower().Contains(key.ToLower())
+                                                            || int.TryParse(key, out int number) ? x.SanPham_giaTien == int.Parse(key) : false
+                                                            || x.CreateDate.ToString("dd/MM/yyyy") == key)
+                                                    .Count();
+                }
+            }
+            //Nếu key > 3 thì mới dùng được Lucene
+            else
+            {
+                if (!_examineManager.TryGetIndex(UmbracoIndexes.InternalIndexName, out var index) || !(index is IUmbracoIndex umbIndex))
+                {
+                    return null;
+                }
+
+                var searcher = index.Searcher;
+                // Add time ticks (excution time counter)
+                Stopwatch watch = new Stopwatch();
+                watch.Start();
+                var result = searcher.CreateQuery(IndexTypes.Content).ManagedQuery(key).Execute();
+                watch.Stop();
+
+                //Check null
+                if (!result.Any())
+                {
+                    return null;
+                }
+
+                query = _umbracoHelper.Content(result.Select(x => x.Id))
+                                            .Where(x => x.ContentType.CompositionAliases?.Any(a => a == SanPham_base.ModelTypeAlias) == true)
+                                            .Select(x =>
                                             {
-                                                Id = sanphamBase.Id,
-                                                Name = sanphamBase.Name,
-                                                Url = sanphamBase.Url(),
-                                                Price = sanphamBase.SanPham_giaTien,
-                                                CreateDate = sanphamBase.CreateDate.ToString(),
-                                                Image = sanphamBase.SanPham_anhSanPham?.FirstOrDefault()?.Url()
-                                            };
-                                        }).Take(8);
+                                                var sanphamBase = x as SanPham_base;
+                                                return new QueryResultModel
+                                                {
+                                                    Id = sanphamBase.Id,
+                                                    Name = sanphamBase.Name,
+                                                    Url = sanphamBase.Url(),
+                                                    Price = sanphamBase.SanPham_giaTien,
+                                                    CreateDate = sanphamBase.CreateDate.ToString(),
+                                                    Image = sanphamBase.SanPham_anhSanPham?.FirstOrDefault()?.Url()
+                                                };
+                                            }).Take(8);
+
+                searchResultModel.TotalRows = _umbracoHelper.Content(result.Select(x => x.Id))
+                                        .Where(x => x.ContentType.CompositionAliases?.Any(a => a == SanPham_base.ModelTypeAlias) == true)
+                                        .Count();
+            }
+            
 
             //Check null
             if (!query.Any())
@@ -234,14 +277,8 @@ namespace UmbracoBoutique.Services
                 return null;
             }
 
-            var totalRows = _umbracoHelper.Content(result.Select(x => x.Id))
-                                        .Where(x => x.ContentType.CompositionAliases?.Any(a => a == SanPham_base.ModelTypeAlias) == true)
-                                        .Count();
-
-            SearchResultModel searchResultModel = new SearchResultModel();
             searchResultModel.Items = query;
             searchResultModel.CurrentPage = 1;
-            searchResultModel.TotalRows = totalRows;
             searchResultModel.PageSize = 8;
             searchResultModel.TotalPages = Utilities.TotalPages(searchResultModel.TotalRows, searchResultModel.PageSize);
             searchResultModel.SearchValue = key;
