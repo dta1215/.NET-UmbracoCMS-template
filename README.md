@@ -15,6 +15,10 @@ Nhận thấy tài liệu Umbraco CMS chưa phổ biến nhiều tại Việt Na
 ## Demo
 Dưới đây là demo website thời trang landing page được xây dựng bằng Umbraco CMS: <a href="https://boutique-cms.site/" target="_blank">Demo</a>
 
+Đăng nhập trang admin: <a href="https://boutique-cms.site/umbraco" target="_blank">Trang Admin</a>
+Tài khoản đăng nhập: test@gmail.com
+Mật khẩu: 123456aA!@
+
 ## Tổng quan về Umbraco CMS
 <details><summary><b>Giới thiệu về Umbraco CMS</b></summary>
   <a href="https://umbraco.com/products/umbraco-cms/">Umbraco CMS</a> là một hệ thống quản lý nội dung mã nguồn mở (CMS) được phát triển trên nền tảng ASP.NET. 
