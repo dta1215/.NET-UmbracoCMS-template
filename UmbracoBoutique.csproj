@@ -5,6 +5,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="wwwroot\media\**" />
+    <Content Remove="wwwroot\media\**" />
+    <EmbeddedResource Remove="wwwroot\media\**" />
+    <None Remove="wwwroot\media\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Remove="package.json" />
   </ItemGroup>
   <ItemGroup>
